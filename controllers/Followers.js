@@ -27,10 +27,10 @@ exports.removeUser = async (req,res) => {
 exports.showUsers = async (req, res) => {
     try {
         const currentUser = await User.findById(req.params.userId, {Followers:1})
-        const arr = currentUser.Followers;
+        const arr = currentUser.Followers; 
         const FollowersList = [];
-        arr.map(user =>  {
-            FollowersList.push(await User.findById(user, {UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture:1}));
+        arr.map(async (user) =>  {
+            FollowersList.push(await User.findOne({_id:user},{UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture : 1}))
         });
         res.json({
             FollowersList,

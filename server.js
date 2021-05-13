@@ -52,7 +52,7 @@ app.use(bodyParser.json());
 app.use(multer({storage: imageStorage}).single('image'));
 app.use(cors());
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => {
   console.log(`Server Running on PORT ${PORT}`);

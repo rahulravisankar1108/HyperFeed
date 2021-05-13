@@ -34,27 +34,27 @@ exports.removeUser = async (req,res) => {
             const DeletingRequest = DeletingUser.Request;
             const  DeletingGivenRequest = DeletingUser.GivenRequest;
             if(DeletingFollowers.length>0) {
-                DeletingFollowers.map((friend) => {
-                    await User.findOneAndUpdate({_id:friend}, {"$pull" : {"Following":userId}}, {"safe":true});
+                DeletingFollowers.map(async (friend) => {
+                    await User.findOneAndUpdate({_id:friend}, {"$pull" : {"Following":userId}}, {"safe":true, "upsert":true});
                 });
             }
             if(DeletingFollowing.length>0) {
-                DeletingFollowing.map((friend) => {
+                DeletingFollowing.map(async (friend) => {
                     await User.findOneAndUpdate({_id:friend}, {'$pull': {"Followers" : userId}}, {"safe":true});
                 });
             }
             if(DeletingRequest.length>0) {
-                DeletingRequest.map((friend) => {
+                DeletingRequest.map(async (friend) => {
                     await User.findOneAndUpdate({_id:friend}, {'$pull': {"GivenRequest" : userId}}, {"safe":true});
                 });
             }
             if(DeletingGivenRequest.length>0) {
-                DeletingGivenRequest.map((friend) => {
+                DeletingGivenRequest.map(async (friend) => {
                     await User.findOneAndUpdate({_id:friend}, {'$pull': {"Request" : userId}}, {"safe":true});
                 });
             }
             if(DeletingPost.length>0) {
-                DeletingPost.map((post) => {
+                DeletingPost.map(async (post) => {
                     await User.findOneAndUpdate({_id:post}, {$set: {"Post" : []}}, {"safe":true, "new":true});  
                 })
                 

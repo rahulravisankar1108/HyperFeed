@@ -6,9 +6,9 @@ exports.getFriendsPost = async (req, res) => {
         const user = await User.findById(req.params.userId,{Following:1});
         const FriendPost = [];
         if(user.Following) {
-            user.Following.map((friend) => {
+            user.Following.map(async (friend) => {
                 const Friend = await User.findById(friend,{Post:1});
-                Friend.Post.map((post) =>  {
+                Friend.Post.map(async(post) =>  {
                     FriendPost.push(await Posts.findById(post));
                 });
             });
@@ -63,7 +63,7 @@ exports.myPosts = async (req,res) => {
         if(currentUser) {
             const arr = currentUser.Post;
             const GetPostDetails = [];
-            arr.map((post) => {
+            arr.map(async (post) => {
                 GetPostDetails.push(await Posts.findById(post));
             });
             if(GetPostDetails.length>0) {
@@ -139,7 +139,7 @@ exports.removeMyPosts = async (req,res) => {
         if(deleteUserPost) {
             const arr = deleteUserPost.Post;
             if(arr.length>0) {
-                arr.map(post => {
+                arr.map(async (post) => {
                     await Posts.findByIdAndRemove(post);
                 });
                 if(await User.findByIdAndUpdate(req.params.userId, {$set : {Post : []}}, {"safe" : true, "new" : true, "upsert":true})) {

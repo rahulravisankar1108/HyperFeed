@@ -39,7 +39,7 @@ exports.showUser = async (req, res) => {
         const currentUser = await User.findById(req.params.userId,{Request :1})
         const arr = currentUser.Request;
         const requestedUser = [];
-        arr.map(user =>  {                
+        arr.map(async (user) =>  {                
             requestedUser.push(await User.findById(user, {UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture:1}));
         });
         res.status(200).json({
@@ -65,7 +65,7 @@ exports.countUser = async (req, res) => {
     catch(err)  {
         res.json({
             message : "Count error occured",
-            Error :
+            Error : err,
         });
     }
 }

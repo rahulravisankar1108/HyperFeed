@@ -24,7 +24,7 @@ exports.showUsers = async (req, res) => {
         const arr = currentUser.GivenRequest;
         if(arr.length>0) {
             const requestedArr = [];
-            arr.map(user => {
+            arr.map(async (user) => {
                 requestedArr.push(await User.findById(user, {UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture:1}));
             });
             res.status(200).json({
