@@ -122,7 +122,7 @@ router.put('User/UpdateProfilePhoto', (req,res) => {
     });
 });
 
-router.get('/',(req,res) => {
+router.get('/User',(req,res) => {
     User.find({})
     .then(response => {
         res.json({
