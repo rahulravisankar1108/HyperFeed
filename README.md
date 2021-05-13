@@ -1,4 +1,10 @@
 # Social Media Application Backend 
+ 
+Build RESTful APIs for a social media application.
+
+## Objective
+Building a RESTful APIs for a social media application that can be used to create post and view posts of their friends.
+
 ## Features 
 - User login SignUp
 - User can fill up profile details, upload profile picture, update details
@@ -29,26 +35,27 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Response
         * status(200),
-             "User": {  
-                "Bio": "",  
-                "Website": "",  
-                "Gender": "",  
-                "ProfilePicture": "",  
-                "Followers": [],  
-                "Following": [],  
-                "Request": [],  
-                "GivenRequest": [],  
-                "Post": [],  
-                "_id": "609cc13b88faac0015c32a6a",  
-                "Email": "ABC@gmail.com",  
-                "UserName": "ABC",  
-                "FullName": "ABC",  
-                "Password": "$2b$10$syP1bPbCTAgYTtX/1d/GwOq/iIg0cGNeR7z.eQAfqYS6NPHRnJRz6",  
-                "Phone": "77896541233",  
-                },
-             "message": "New User Details Added!"
+             ``` "User":  
+               {   
+                  "Bio": "",  
+                  "Website": "",  
+                  "Gender": "",  
+                  "ProfilePicture": "",  
+                  "Followers": [],  
+                  "Following": [],  
+                  "Request": [],  
+                  "GivenRequest": [],  
+                  "Post": [],  
+                  "_id": "609cc13b88faac0015c32a6a",  
+                  "Email": "ABC@gmail.com",  
+                  "UserName": "ABC",  
+                  "FullName": "ABC",  
+                  "Password": "$2b$10$syP1bPbCTAgYTtX/1d/GwOq/iIg0cGNeR7z.eQAfqYS6NPHRnJRz6",  
+                  "Phone": "77896541233",  
+              },  
+             "message": "New User Details Added!" 
 
-        *  status(400),
+        *  status(400),  
                 "message": "Already Registered Message!"
 
 2. Login
@@ -59,27 +66,30 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Incoming Request Body,
         1. UserName
         2. Password
+  
     - Expected Response,
         * status(200),
-             "User": {
-                "Bio": "",
-                "Website": "",
-                "Gender": "",
-                "ProfilePicture": "",
-                "Followers": [],
-                "Following": [],
-                "Request": [],
-                "GivenRequest": [],
-                "Post": [],
-                "_id": "609cc13b88faac0015c32a6a",
-                "Email": "ABC@gmail.com",
-                "UserName": "ABC",
-                "FullName": "ABC",
-                "Password": "$2b$10$syP1bPbCTAgYTtX/1d/GwOq/iIg0cGNeR7z.eQAfqYS6NPHRnJRz6",
-                "Phone": "77896541233",
+             ``` "User":  
+             {
+                  "Bio": "",
+                  "Website": "",
+                  "Gender": "",
+                  "ProfilePicture": "",
+                  "Followers": [],
+                  "Following": [],
+                  "Request": [],
+                  "GivenRequest": [],
+                  "Post": [],
+                  "_id": "609cc13b88faac0015c32a6a",
+                  "Email": "ABC@gmail.com",
+                  "UserName": "ABC",
+                  "FullName": "ABC",
+                  "Password": "$2b$10$syP1bPbCTAgYTtX/1d/GwOq/iIg0cGNeR7z.eQAfqYS6NPHRnJRz6",
+                  "Phone": "77896541233",
                 },
-        * status(400),
+        * status(400),  
             Appropriate Error Message 
+          
 **User**
 1. Show User
     **URL** - https://social-media-app-back.herokuapp.com/ShowUser/:UserID
@@ -88,9 +98,10 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Incoming Request Body,
         1. UserID
+     
     - Expected Response,
         The Object containing that UserID.
-        "User": {
+        ```"User": {
                 "Bio": "",
                 "Website": "",
                 "Gender": "",
@@ -114,9 +125,10 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Incoming Request Body,
         1. UserID
+   
     - Expected Response,
-        Message : "User Deleted Successfully",
-        res:true,
+        Message : "User Deleted Successfully",  
+           res:true,
 
 3. Update Profile Details
     **URL** - https://social-media-app-back.herokuapp.com/User/UpdateProfile
@@ -125,30 +137,33 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Incoming Request Body,
         1. UserID 
+
         They'll give the UserID, 
         remaining will be found out from their account.
         All are optional , if they want it they can update and store
-        2. Email",
-        3. "UserName",
-        4. "FullName",
-        5. "Password",
-        6. "Phone",
-        7. "Bio" ,
-        8. "Website",
-        9. "Gender,
+        2. "Email",  
+        3. "UserName",  
+        4. "FullName",  
+        5. "Password",  
+        6. "Phone",  
+        7. "Bio" ,  
+        8. "Website",  
+        9. "Gender,  
 
     - Expected Response,
-        Message : "User Deleted Successfully",
-        res:true,
+        ```Message : "User Deleted Successfully",  
+           res:true,
 
 4. Search User
     **URL** - https://social-media-app-back.herokuapp.com/SearchUser
 
     > /SearchUser provides the user 
+   
     - Expected Request body,
         1. UserName
+       
     - Expected Response,
-        The record which contains userName as the request body.
+       The record which contains userName as the request body.
 
 5. Update Profile Photo
     **URL** - https://social-media-app-back.herokuapp.com/UpdateProfilePhoto
@@ -158,9 +173,10 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request body,
         1. UserID,
         2. Image
+       
     - Expected Response,
-        message : Profile Photo Updated,
-        res : true
+        ```message : Profile Photo Updated,
+           res : true
 
 **Follower**
 1. Remove
@@ -194,7 +210,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request (params)
         1. UserID
 
-    - Expected Response
+    - Expected Response  
         FollowersCount
 
 **Following**
@@ -206,7 +222,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request
         1. UserID,
         2. FollowingID
-    - Expected Response
+    - Expected Response  
         Message : "Removed the target User"
 
 2. Accept
@@ -218,7 +234,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         1. UserID
         2. RequestedUserID
 
-    - Expected Response
+    - Expected Response  
         Message : "Accepted the Target User to follow"
 
 3. Count
@@ -230,9 +246,9 @@ Also write 1-2 lines explaining the function of the endpoint.
         1. CurrentUserID
 
     - Expected Response
-        {
-            "FollowingCount": 2
-        }
+        ```{
+               "FollowingCount": 2
+           }
 
 4. Get 
     **URL** -  https://social-media-app-back.herokuapp.com/Following/ShowAll-User/:UserID
@@ -243,19 +259,19 @@ Also write 1-2 lines explaining the function of the endpoint.
         1. UserID
 
     - Expected Response
-        {
-    "FollowingList": [
-        {
-            "Bio": "",
-            "Website": "",
-            "Gender": "",
-            "ProfilePicture": "",
-            "_id": "609a4639e9a5c899587d7e7c",
-            "Email": "Lalitha@gmail.com",
-            "UserName": "Lalitha",
-            "FullName": "Lalitha",
-            "Phone": "9787367249"
-        },
+        ```{
+          "FollowingList": [
+              {
+                  "Bio": "",
+                  "Website": "",
+                  "Gender": "",
+                  "ProfilePicture": "",
+                  "_id": "609a4639e9a5c899587d7e7c",
+                  "Email": "Lalitha@gmail.com",
+                  "UserName": "Lalitha",
+                  "FullName": "Lalitha",
+                  "Phone": "9787367249"
+              },
             ]
         }
 
@@ -268,7 +284,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request
         1. UserID
     - Expected Response
-        "RequestedUser": [
+        ```"RequestedUser": [
                 {
                     "Bio": "",
                     "Website": "",
@@ -291,6 +307,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request
         1. UserID
         2. RequestID
+        
     - Expected Response
         Message : "User removed from request"
 
@@ -302,6 +319,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request
         1. targetID
         2. UserID
+        
     - Expected Response
         Message : "Requested"
 
@@ -312,6 +330,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (params)
         1. UserID
+     
     - Expected Response
         "RequestedCount"
 
@@ -322,6 +341,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (params)
         1. UserID
+        
     - Expected Response
         message : "Removed all requests"
 
@@ -334,6 +354,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Request
         1. CurrentUserID
         2. UserID of the given Request
+        
     - Expected Response
         Message : "Given Request Removed"
 
@@ -344,8 +365,9 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (params)
         1. UserID
+        
     - Expected Response
-        if Given Request in current User 
+        ```if Given Request in current User 
         exists status(200),
             Array containing the Details of the Given Friend Request's friends.,
             res:true
@@ -384,6 +406,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (Params)
         1. UserID 
+        
     - Expected Response
         Message : "All post Removed"
 
@@ -394,17 +417,18 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (Params)
         1. UserID
+        
     - Expected Response 
-    {
-        "FriendPost": [
-        {
-            "Image": "https://res.cloudinary.com/socialmediaa/image/upload/v1620825295/xfb7szj4s7uayjf7yhiv.jpg",
-            "Caption": "Good day",
-            "Location": "Coimbatore",
-            "_id": "609bd4ce82bea482d0970bb8",
-            "__v": 0
+        ```{
+            "FriendPost": [
+            {
+                "Image": "https://res.cloudinary.com/socialmediaa/image/upload/v1620825295/xfb7szj4s7uayjf7yhiv.jpg",
+                "Caption": "Good day",
+                "Location": "Coimbatore",
+                "_id": "609bd4ce82bea482d0970bb8",
+                "__v": 0
+            }
         }
-    }
 
 4. Add Post
     **URL** - https://social-media-app-back.herokuapp.com/StoreMyPost
@@ -416,9 +440,10 @@ Also write 1-2 lines explaining the function of the endpoint.
         2. Caption
         3. Location
         4. image
+       
     - Expected Reponse
-        Message : "Post Added Sucessfully",
-        res:true
+        Message : "Post Added Sucessfully",  
+           res:true
 
 5. Get My Post
     **URL** - https://social-media-app-back.herokuapp.com/MyPosts/:UserID
@@ -427,8 +452,9 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request (Params)
         1. UserID
+        
     - Expected Response
-        {
+        ```{
             "res": false // if no post,
 
             "res" : true,
@@ -444,20 +470,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         1. PostId
         2. Caption
         3. Location
+        
     - Expected Response
-        Message : "Post Details Updated",
+       Message : "Post Details Updated",
         res : true
-
-
-
-
-
-        
-        
-        
-
-
-
-
-
-
