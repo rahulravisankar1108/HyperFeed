@@ -27,14 +27,21 @@ router.get('/ShowAll-Users/:UserID',async (req, res) => {
     .then(async (user) => {
         if(user) {
             const arr = user.GivenRequest;
-            const RequestedArr = [];
-            for(var i=0;i<arr.length;i++) {
-                RequestedArr.push(await User.findById(arr[i], {UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture:1}));
+            if(arr.length>0) {
+                const RequestedArr = [];
+                for(var i=0;i<arr.length;i++) {
+                    RequestedArr.push(await User.findById(arr[i], {UserName: 1,Email : 1, FullName:1, Phone : 1, Bio:1, Website:1, Gender:1, ProfilePicture:1}));
+                }
+                res.status(200).json({
+                    "RequestedUsers":RequestedArr,
+                    res:true,
+                });
             }
-            res.status(200).json({
-                "RequestedUsers":RequestedArr,
-                res:true,
-            });
+            else {
+                res.status(200).json({
+                    res:false,
+                }); 
+            }
         }
         else {
             res.status(404).json({
