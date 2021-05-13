@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-require('dotenv/config');
+require('dotenv/config'); 
 
 module.exports = async(req,res,next) => {
     const authorized = req.get('Authorization');
@@ -7,7 +7,7 @@ module.exports = async(req,res,next) => {
         const token = authorized.split(' ')[1];
         let decodedToken;
         try{
-            decodedToken = jwt.verify(token, process.env.SECRET);
+            decodedToken = jwt.verify(token, SECRET);
         }
         catch(err) {
             console.log('Error in decoding token :',err);
