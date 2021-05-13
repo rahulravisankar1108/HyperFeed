@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const cloudinary = require('cloudinary').v2;
 const { CloudinaryStorage } = require('multer-storage-cloudinary');
-require('dotenv/config');
+require('dotenv/config'); 
 
 const User = require('./routes/User');
 const Posts = require("./routes/Posts");
@@ -61,9 +61,9 @@ app.listen(PORT, () => {
 });
 
 app.use('/Auth',Auth);
-app.use('/User',User);
-app.use('/Post',Posts);
-app.use('/Followers',Follower);
-app.use('/Following',Following);
+app.use(User);
+app.use(Posts);
+app.use('Followers',Follower);
+app.use('Following',Following);
 app.use('/Request',Request);
 app.use('/GivenRequest',GivenRequest);

@@ -3,7 +3,7 @@ const {Posts} = require("../models/Posts");
 const User = require("../models/User");
 const router = express.Router();
 
-router.get('GetFriendsPost/:UserID' , async (req, res) => {
+router.get('/GetFriendsPost/:UserID' , async (req, res) => {
     try {
         const user = await User.findById(req.params.UserID,{Following:1});
         const FriendPost = [];
@@ -123,7 +123,7 @@ router.post('/RemoveMyPost',async (req, res) => {
 
 });
 
-router.get("/RemoveAllMyPost/:UserID" , async (req,res) => {
+router.get("/RemoveAll-MyPost/:UserID" , async (req,res) => {
     try {
         const DeletUserPost = await User.findById(req.params.UserID);
         if(DeletUserPost) {
@@ -159,6 +159,15 @@ router.get("/RemoveAllMyPost/:UserID" , async (req,res) => {
             Error : err,
         });
     }
-})
+});
+
+router.get('/',(req,res) => {
+    User.find({})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+});
 
 module.exports = router;
