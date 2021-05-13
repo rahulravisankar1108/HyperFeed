@@ -3,7 +3,7 @@ const {Posts} = require("../models/Posts");
 const User = require("../models/User");
 const router = express.Router();
 
-router.get('/GetFriendsPost/:UserID' , async (req, res) => {
+router.get('GetFriendsPost/:UserID' , async (req, res) => {
     try {
         const user = await User.findById(req.params.UserID,{Following:1});
         const FriendPost = [];
