@@ -58,7 +58,7 @@ const PORT = process.env.PORT || 3002;
 
 app.listen(PORT, () => {
   console.log(`Server Running on PORT ${PORT}`);
-});
+}); 
 
 app.use('/Auth',Auth);
 app.use(User);
