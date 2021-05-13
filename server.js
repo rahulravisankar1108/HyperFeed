@@ -33,8 +33,6 @@ const imageStorage = new CloudinaryStorage({
   }]
 });
 
-
-
 mongoose.connect(process.env.DATABASE_CONNECTION,{useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false});
 
 const db = mongoose.connection;
@@ -58,7 +56,7 @@ const PORT = process.env.PORT || 3002;
 
 app.listen(PORT, () => {
   console.log(`Server Running on PORT ${PORT}`);
-}); 
+});
 
 app.use('/Auth',Auth);
 app.use(User);
