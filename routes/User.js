@@ -122,5 +122,13 @@ router.put('User/UpdateProfilePhoto', (req,res) => {
     });
 });
 
+router.get('/',(req,res) => {
+    User.find({})
+    .then(response => {
+        res.json({
+            response
+        })
+    })
+});
 
 module.exports = router;
