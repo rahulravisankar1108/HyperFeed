@@ -20,7 +20,7 @@ router.get('/ShowUser/:UserID',(req, res) => {
 
 
 router.get('/RemoveUser/:UserID',async (req,res) => {
-    try {
+    try { 
         const UserID = req.params.UserID;
         const DeletingUser = await User.findById(UserID, {Followers:1, Following:1,Post:1, Request:1, GivenRequest:1})
         if(DeletingUser) {
@@ -65,7 +65,7 @@ router.get('/RemoveUser/:UserID',async (req,res) => {
 });
 
 
-router.post('/UpdateProfile',(req, res) => {
+router.post('User/UpdateProfile',(req, res) => {
     const UserID = req.body.UserID;
     const UpdatedData = {
         Email : req.body.Email,
@@ -103,7 +103,7 @@ router.get('/SearchUser', async (req,res) => {
     }
 })
 
-router.put('/UpdateProfilePhoto', (req,res) => {
+router.put('User/UpdateProfilePhoto', (req,res) => {
     const UserID = req.body.UserID;
     const UpdatedData = {
         ProfilePicture : req.file.path,
@@ -122,24 +122,5 @@ router.put('/UpdateProfilePhoto', (req,res) => {
     });
 });
 
-
-router.get('/',(req,res) => {
-    User.find({})
-    .then(response => {
-        res.json({
-            response
-        })
-    })
-});
-
-router.get('/Clear' , (req,res) => {
-    User.deleteMany({})
-    .then((response) => {
-        res.json({
-            message : "Cleared",
-            response,
-        })
-    })
-});
 
 module.exports = router;

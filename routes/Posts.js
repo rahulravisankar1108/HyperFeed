@@ -3,7 +3,31 @@ const {Posts} = require("../models/Posts");
 const User = require("../models/User");
 const router = express.Router();
 
-router.post('/StorePost', (req,res) => {
+router.get('/GetFriendsPost/:UserID' , async (req, res) => {
+    try {
+        const user = await User.findById(req.params.UserID,{Following:1});
+        const FriendPost = [];
+        if(user.Following) {
+            for(var i=0;i<user.Following.length;i++) {
+                const Friend = await User.findById(user.Following[i],{Post:1});
+                for(var j=0;j<Friend.Post.length;j++) {
+                    FriendPost.push(await Posts.findById(Friend.Post[j]));
+                }
+            }
+            res.status(200).json({FriendPost : FriendPost});
+        }
+        else {
+            res.status(400).json({
+                message : "You dint Follow Anyone",
+                res:false,
+            });
+        }
+    }
+    catch(err) {
+        res.status(500).json(err);
+    }
+})
+router.post('/StoreMyPost', (req,res) => {
     const UserID = req.body.UserID;
     const NewPost = new Posts({
         Location : req.body.Location,
@@ -33,7 +57,7 @@ router.post('/StorePost', (req,res) => {
         })
     });
 });
-router.get('/ShowPosts/:ID', async (req,res) => {
+router.get('/MyPosts/:ID', async (req,res) => {
     await User.findById(req.params.ID, {Post : 1})
     .then(async (response) => {
         if(response) {
@@ -44,7 +68,7 @@ router.get('/ShowPosts/:ID', async (req,res) => {
             }
             res.status(200).json({
                 GetPostDetails,
-                res:true,
+                res:true, 
             });
         }
         else {
@@ -59,7 +83,7 @@ router.get('/ShowPosts/:ID', async (req,res) => {
         })
     });
 });
-router.post('/Update-PostDetails', async (req, res) => {
+router.post('/UpdateMyPostDetails', async (req, res) => {
     const ID =req.body.ID;
     const caption = req.body.Caption;
     const location = req.body.Location;
@@ -76,7 +100,7 @@ router.post('/Update-PostDetails', async (req, res) => {
         })
     });
 });
-router.post('/RemovePost',async (req, res) => {
+router.post('/RemoveMyPost',async (req, res) => {
     try {
         if(await User.updateOne({_id : req.body.UserID}, {"$pull" : {"Post":req.body.ID}}, {"safe" : true,"upsert" :true}) && await Posts.findByIdAndRemove(req.body.ID)) {
             res.status(200).json({
@@ -99,7 +123,7 @@ router.post('/RemovePost',async (req, res) => {
 
 });
 
-router.get("/RemoveAllPost/:UserID" , async (req,res) => {
+router.get("/RemoveAllMyPost/:UserID" , async (req,res) => {
     try {
         const DeletUserPost = await User.findById(req.params.UserID);
         if(DeletUserPost) {
@@ -136,49 +160,5 @@ router.get("/RemoveAllPost/:UserID" , async (req,res) => {
         });
     }
 })
-router.get('/', async (req,res) => {
-    try {
-        const getPosts = await Posts.find({});
-        if(getPosts) {
-            res.status(200).json({
-                getPosts,
-                "res":true,
-            });
-        }
-        else {
-            res.status(404).json({
-                getPosts,
-                "res":false,
-            });
-        }
-    }
-    catch (err) {
-        res.status(500).json({
-            Error : err,
-        });
-    }
-})
-router.get("/ClearPost", async (req,res) => {
-    try {
-        const Clear = await Posts.deleteMany({});
-        if(Clear) {
-            res.status(200).json({
-                Clear,
-                message : "Cleared",
-            });
-        }
-        else {
-            res.status(404).json({
-                message : "Not Cleared",
-            });
-        }
-        
-    }
 
-    catch (err) {
-        res.status(500).json({
-            message : " Some Error Occured!",
-        });
-    }
-})
 module.exports = router;

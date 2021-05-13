@@ -4,7 +4,7 @@ const router = express.Router();
 const User = require("../models/User");
 
 
-router.post('/Remove',async (req,res) => {
+router.post('/RemoveUser',async (req,res) => {
     try {
         const UserId = req.body.UserID;
         const GivenRequestUser = req.body.GivenRequestUser;
@@ -12,7 +12,7 @@ router.post('/Remove',async (req,res) => {
         await User.updateOne({_id:GivenRequestUser} , {"$pull" : {"Request":UserId}}, { safe: true })
         res.status(200).json({
             message : "Deleted the Given Request ID"
-        });
+        }); 
     }
     catch(err) {
         res.status(500).json({
@@ -22,7 +22,7 @@ router.post('/Remove',async (req,res) => {
     }
 });
 
-router.get('/Show/:UserID',async (req, res) => {
+router.get('/ShowAll-Users/:UserID',async (req, res) => {
     await User.findById(req.params.UserID, {GivenRequest : 1})
     .then(async (user) => {
         if(user) {

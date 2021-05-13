@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
 
-router.post('/RemoveFollower',async (req,res) => {
+router.post('/RemoveUser',async (req,res) => {
     try {
         const UserID = req.body.UserID;
         const FollowerID = req.body.FollowerID;
@@ -27,8 +27,8 @@ router.post('/RemoveFollower',async (req,res) => {
     }
 });
 
-
-router.get('/ShowFollowers/:UserID',async (req, res) => {
+ 
+router.get('/ShowAll-User/:UserID',async (req, res) => {
 
     await User.findById(req.params.UserID, {Followers:1})
     .then(async (response) => {
@@ -49,7 +49,7 @@ router.get('/ShowFollowers/:UserID',async (req, res) => {
 });
 
 
-router.get('/CountFollowers/:UserID',async (req, res) => {
+router.get('/CountAll-User/:UserID',async (req, res) => {
     
     await User.findById(req.params.UserID)
     .then(response => {

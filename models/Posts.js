@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
     Image : 
     {
-        type : String,
+        type : String, 
         default : "",
     },
     Caption : {
@@ -18,6 +18,5 @@ const PostSchema = new Schema({
     },
 });
 
-// const SubSchema = mongoose.model('SubSchema' , subSchema);
 const Posts = mongoose.model('Posts', PostSchema);
 module.exports = {Posts };

@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const User = require("../models/User");
-router.post('/Update', async (req,res) => {
+router.post('/Initiate', async (req,res) => {
     try {
         const TargetID = req.body.TargetID;
         const RequestId = req.body.UserID;
@@ -19,10 +19,9 @@ router.post('/Update', async (req,res) => {
         });
     }
      
-});
+}); 
 
-
-router.post('/RemoveRequest',async (req,res) => {
+router.post('/RemoveUser',async (req,res) => {
     try {
         const UserID = req.body.UserID;
         const RequestID = req.body.RequestID;
@@ -40,7 +39,7 @@ router.post('/RemoveRequest',async (req,res) => {
 });
 
 
-router.get('/ShowRequestedUsers/:UserID', async (req, res) => {
+router.get('/ShowAll-Users/:UserID', async (req, res) => {
     await User.findById(req.params.UserID,{Request :1})
     .then(async (user) => {
         const arr = user.Request;
@@ -68,7 +67,7 @@ router.get('/ShowRequestedUsers/:UserID', async (req, res) => {
 });
 
 
-router.get('/CountRequest/:UserID',async (req, res) => {
+router.get('/CountAll-Users/:UserID',async (req, res) => {
     await User.findById(req.params.UserID, {Request:1})
     .then(response => {
         const count = response.Request.length;
@@ -83,7 +82,7 @@ router.get('/CountRequest/:UserID',async (req, res) => {
     });
 });
 
-router.get('/Clear/:UserID' , (req,res) => {
+router.get('/ClearAll-Users/:UserID' , (req,res) => {
     const user = User.findById(req.params.UserID);
     const updatedRequest = [];
     user.findByIdAndUpdate(req.params.UserID, {$set : {Request : updatedRequest}}, {"safe" :true, "new" : true})
