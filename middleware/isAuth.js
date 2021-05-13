@@ -7,7 +7,7 @@ module.exports = async(req,res,next) => {
         const token = authorized.split(' ')[1];
         let decodedToken;
         try{
-            decodedToken = jwt.verify(token, SECRET);
+            decodedToken = jwt.verify(token, process.env.SECRET);
         }
         catch(err) {
             console.log('Error in decoding token :',err);
