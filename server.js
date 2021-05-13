@@ -63,7 +63,7 @@ app.listen(PORT, () => {
 app.use('/Auth',Auth);
 app.use(User);
 app.use(Posts);
-app.use('Followers',Follower);
-app.use('Following',Following);
+app.use('/Followers',Follower);
+app.use('/Following',Following);
 app.use('/Request',Request);
 app.use('/GivenRequest',GivenRequest);
