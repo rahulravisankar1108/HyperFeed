@@ -66,10 +66,17 @@ router.get('/MyPosts/:ID', async (req,res) => {
             for (var i=0;i<arr.length;i++) {
                 GetPostDetails.push(await Posts.findById(arr[i]));
             }
-            res.status(200).json({
-                GetPostDetails,
-                res:true, 
-            });
+            if(GetPostDetails.length>0) {
+                res.status(200).json({
+                    GetPostDetails,
+                    res:true, 
+                });
+            }
+            else {
+                res.status(400).json({
+                    res:false, 
+                });
+            }
         }
         else {
             res.status(404).json({
