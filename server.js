@@ -65,10 +65,10 @@ app.listen(PORT, () => {
   console.log(`Server Running on PORT ${PORT}`);
 });
 
-app.use('/Auth',Auth);
+app.use('/auth',Auth);
 app.use(User);
 app.use(Posts);
-app.use('/Followers',Follower);
-app.use('/Following',Following);
-app.use('/Request',Request);
-app.use('/GivenRequest',GivenRequest);
+app.use('/followers',Follower);
+app.use('/following',Following);
+app.use('/request',Request);
+app.use('/given-request',GivenRequest);

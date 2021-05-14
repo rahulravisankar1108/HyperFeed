@@ -4,11 +4,11 @@ const User = require("../models/User");
 
 exports.showUser = async (req, res) => {
     try {
-        const userId = req.params.userId;
-        const userDetails = await User.findById(userId)
-        if(userDetails) {
+        const userDetails = await User.findById(req.params.userId);
+        console.log(userDetails);
+        if(userDetails!=null) {
             res.status(200).json({
-                "userDetails":response,
+                "userDetails":userDetails,
             });
         }
         else {
