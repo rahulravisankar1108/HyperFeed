@@ -59,7 +59,7 @@ exports.storePost = async  (req,res) => {
 
 exports.myPosts = async (req,res) => {
     try {
-        const currentUser = await User.findById(req.params.ID, {Post : 1});
+        const currentUser = await User.findById(req.params.id, {Post : 1});
         if(currentUser) {
             const arr = currentUser.Post;
             const GetPostDetails = [];
