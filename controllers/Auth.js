@@ -64,28 +64,24 @@ exports.postLogin = async (req, res,next) => {
         return
     }
     const  email = req.body.email;
-    const password  = req.body.password;
 
     try {
-        const isUser = await User.findOne({ Email: email});
+        const currentUser = await User.findOne({ Email: email});
         
-        const token = jwt.sign({_id : isUser._id}, process.env.SECRET, {expiresIn : 360000});
-        const {
-            _id, 
-            FullName,
-            Email,
-            Followers,
-            Following,
-            Request,
-            GivenRequest} = isUser;
+        const token = jwt.sign({_id : currentUser._id}, process.env.SECRET, {expiresIn : 360000});
 
         res.status(200).json({ 
             token, 
             res: true,
             user : {
-                _id, FullName,Email,
-                Followers,Following,
-                Request, GivenRequest}
+                userid : currentUser._id,
+                fullName : currentUser.FullName,
+                email : currentUser.Email,
+                followers : currentUser.Followers,
+                following : currentUser.Following,
+                request : currentUser.Request, 
+                givenRequest : currentUser.GivenRequest
+            }
         });         
     }
     catch(err) {
