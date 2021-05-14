@@ -1,3 +1,4 @@
+const { validationResult } = require('express-validator');
 const User = require("../models/User");
 
 exports.showUser = async (req, res) => {
@@ -71,18 +72,26 @@ exports.removeUser = async (req,res) => {
     }
 }
 
-exports.updateProfile = async (req, res) => {
+exports.postupdateProfile = async (req, res) => {
+    const errors = validationResult(req);
+    if(!errors.isEmpty()){
+        const err = new Error('Login failed!');
+        err.statusCode = 422;
+        err.data = errors.array();
+        res.json({errors: err});
+        return
+    }   
+    const userId = req.body.userId;
+    const updatedData = {
+        Email : req.body.email,
+        UserName : req.body.userName,
+        FullName : req.body.fullName,
+        Password : req.body.password,
+        Phone : req.body.phone,
+        Bio : req.body.bio,
+        Gender : req.body.gender,
+    };
     try {
-        const userId = req.body.userId;
-        const updatedData = {
-            Email : req.body.Email,
-            UserName : req.body.UserName,
-            FullName : req.body.FullName,
-            Password : req.body.Password,
-            Phone : req.body.Phone,
-            Bio : req.body.Bio,
-            Gender : req.body.Gender,
-        };
         const updateProfile = await User.findByIdAndUpdate(userId, { $set: updatedData }, { new: true });
         if(updateProfile) {
             res.status(200).json({
@@ -136,10 +145,3 @@ exports.updateProfilePhoto = async (req,res) => {
         })
     }
 }
-
-
-
-
-
-
-
