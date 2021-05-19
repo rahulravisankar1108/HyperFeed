@@ -22,7 +22,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Auth**
 1. Sign Up
-    **URL** - https://social-media-app-back.herokuapp.com/Auth/SignUp
+    **URL** - https://social-media-app-back.herokuapp.com/auth/signup
 
     > Auth/SignUp provides the user to sign up if they are a new user.
 
@@ -59,7 +59,7 @@ Also write 1-2 lines explaining the function of the endpoint.
                 "message": "Already Registered Message!"
 
 2. Login
-    **URL** - https://social-media-app-back.herokuapp.com/Auth/Login
+    **URL** - https://social-media-app-back.herokuapp.com/auth/login
 
     > Auth/Login provides the existing user to log in to their account.
 
@@ -92,7 +92,7 @@ Also write 1-2 lines explaining the function of the endpoint.
           
 **User**
 1. Show User
-    **URL** - https://social-media-app-back.herokuapp.com/ShowUser/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/show-user/:userId
 
     > /ShowUser/:UserID provides the users to show their  Profile details which has been stored
 
@@ -119,7 +119,7 @@ Also write 1-2 lines explaining the function of the endpoint.
                 },
 
 2. Remove User
-    **URL** - https://social-media-app-back.herokuapp.com/RemoveUser/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/remove-user/:userId
 
     > /RemoveUser/:UserID provides the user to Delete their account from the App.
 
@@ -131,7 +131,7 @@ Also write 1-2 lines explaining the function of the endpoint.
            res:true,
 
 3. Update Profile Details
-    **URL** - https://social-media-app-back.herokuapp.com/User/UpdateProfile
+    **URL** - https://social-media-app-back.herokuapp.com/user/edit-account
 
     > /User/UpdateProfile provides the user to update their profile Details which has been stored during earlier.
 
@@ -155,7 +155,7 @@ Also write 1-2 lines explaining the function of the endpoint.
            res:true,
 
 4. Search User
-    **URL** - https://social-media-app-back.herokuapp.com/SearchUser
+    **URL** - https://social-media-app-back.herokuapp.com/search-user
 
     > /SearchUser provides the user 
    
@@ -166,7 +166,7 @@ Also write 1-2 lines explaining the function of the endpoint.
        The record which contains userName as the request body.
 
 5. Update Profile Photo
-    **URL** - https://social-media-app-back.herokuapp.com/UpdateProfilePhoto
+    **URL** - https://social-media-app-back.herokuapp.com/user/edit-profile-photo
 
     > /UpdateProfilePhoto provides the user to update their profile photo
 
@@ -180,7 +180,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Follower**
 1. Remove
-    **URL** - https://social-media-app-back.herokuapp.com/Followers/RemoveUser
+    **URL** - https://social-media-app-back.herokuapp.com/followers/remove-user
 
     >  /Followers/RemoveUser provides the user to remove the other user who follow the current user
 
@@ -192,7 +192,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "Follower Removed"
 
 2. Get
-    **URL** - https://social-media-app-back.herokuapp.com/Followers/ShowAll-User/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/followers/show-users/:userId
 
     > /Followers/ShowAll-User/:UserID provides the user to get the other user details who already follow the curernt user
 
@@ -203,7 +203,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         Array of all followers who follow the current user.
 
 3. Count
-    **URL** - https://social-media-app-back.herokuapp.com/Followers/CountAll-User/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/followers/count-users/:userId
 
     > /Followers/CountAll-User/:UserID provides the user to count their followers
 
@@ -215,7 +215,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Following**
 1. Delete
-    **URL** - https://social-media-app-back.herokuapp.com/Following/RemoveUser
+    **URL** - https://social-media-app-back.herokuapp.com/following/remove-user
 
     > /Following/RemoveUser provides the user to delete the current user who already follow the other User
 
@@ -226,7 +226,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "Removed the target User"
 
 2. Accept
-    **URL** - https://social-media-app-back.herokuapp.com/Following/AddUser
+    **URL** - https://social-media-app-back.herokuapp.com/following/add-user
 
     > /Following/AddUser provides the user to accept the request given by other users
 
@@ -238,29 +238,28 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "Accepted the Target User to follow"
 
 3. Count
-    **URL** - https://social-media-app-back.herokuapp.com/Following/CountAll-User/:UserID
-
-    > /Following/CountAll-User/:UserID provides the user to count whom the current user follows
+    **URL** - https://social-media-app-back.herokuapp.com/following/count-users/:userId
+    > /following/CountAll-User/:UserID provides the user to count whom the current user follows
 
     - Expected Request (params)
         1. CurrentUserID
 
     - Expected Response
         ```{
-               "FollowingCount": 2
+               "followingCount": 2
            }
 
 4. Get 
-    **URL** -  https://social-media-app-back.herokuapp.com/Following/ShowAll-User/:UserID
+    **URL** -  https://social-media-app-back.herokuapp.com/following/show-users/:userId
 
-    > /Following/ShowAll-User/:UserID provides the user to get all the other users details whom the current user follows
+    > /following/ShowAll-User/:UserID provides the user to get all the other users details whom the current user follows
 
     - Expected Request (params)
         1. UserID
 
     - Expected Response
         ```{
-          "FollowingList": [
+          "followingList": [
               {
                   "Bio": "",
                   "Website": "",
@@ -277,14 +276,14 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Request**
 1. Get
-    **URL** - https://social-media-app-back.herokuapp.com/Request/ShowAll-Users/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/request/show-users/:userId
 
-    > /Request/ShowAll-Users/:UserID provides the user to get all the Request received from other users to the Current User
+    > /request/ShowAll-Users/:UserID provides the user to get all the request received from other users to the Current User
 
     - Expected Request
         1. UserID
     - Expected Response
-        ```"RequestedUser": [
+        ```"requestedUser": [
                 {
                     "Bio": "",
                     "Website": "",
@@ -300,9 +299,9 @@ Also write 1-2 lines explaining the function of the endpoint.
         "res": true 
 
 2. Remove
-    **URL** - https://social-media-app-back.herokuapp.com/Request/RemoveUser
+    **URL** - https://social-media-app-back.herokuapp.com/request/remove-user
 
-    > /Request/RemoveUser provides the user to remove one request given by the other user
+    > /request/RemoveUser provides the user to remove one request given by the other user
 
     - Expected Request
         1. UserID
@@ -312,9 +311,9 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "User removed from request"
 
 3. To Give Request
-    **URL** - https://social-media-app-back.herokuapp.com/Request/Initiate
+    **URL** - https://social-media-app-back.herokuapp.com/request/initiate
 
-    > /Request/Initiate provides the suer to give request to other request
+    > /request/Initiate provides the suer to give request to other request
 
     - Expected Request
         1. targetID
@@ -324,9 +323,9 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "Requested"
 
 4. Count
-    **URL** - https://social-media-app-back.herokuapp.com/Request/CountAll-Users/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/request/count-users/:userId
 
-    > /Request/CountAll-Users/:UserID provides the user to count the number of request given by other users
+    > /request/CountAll-Users/:UserID provides the user to count the number of request given by other users
 
     - Expected Request (params)
         1. UserID
@@ -335,7 +334,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         "RequestedCount"
 
 5. Clear
-    **URL** - https://social-media-app-back.herokuapp.com/Request/ClearAll-Users/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/Request/clear-users/:userId
 
     > Request/ClearAll-Users/:UserID provides the user to clear all the request given by the other users
 
@@ -347,7 +346,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Given Request**
 1. Remove
-    **URL** - https://social-media-app-back.herokuapp.com/Requested/RemoveUser
+    **URL** - https://social-media-app-back.herokuapp.com/given-request/remove-user
 
     > /Requested/RemoveUser provides the user to remove the Request given by the current User to other user
 
@@ -356,12 +355,12 @@ Also write 1-2 lines explaining the function of the endpoint.
         2. UserID of the given Request
         
     - Expected Response
-        Message : "Given Request Removed"
+        Message : "Given request Removed"
 
 2. Get 
-    **URL** - https://social-media-app-back.herokuapp.com/Requested/ShowAll-Users/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/given-request/show-users/:userId
 
-    > /Requested/ShowAll-Users/:UserID  provides the user to get the details of the UserID's which current User has given friend request.
+    > /requested/ShowAll-Users/:UserID  provides the user to get the details of the UserID's which current User has given friend request.
 
     - Expected Request (params)
         1. UserID
@@ -375,7 +374,7 @@ Also write 1-2 lines explaining the function of the endpoint.
             res:"false"
 
 3. Count
-    **URL** - https://social-media-app-back.herokuapp.com/GivenRequest/Count/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/given-request/count-users/:userId
 
     > /GivenRequest/Count/:UserID provides the user to count the number of Request given by the currentUser
 
@@ -387,7 +386,7 @@ Also write 1-2 lines explaining the function of the endpoint.
 
 **Post**
 1. Remove One
-    **URL** - https://social-media-app-back.herokuapp.com/RemoveMyPost
+    **URL** - https://social-media-app-back.herokuapp.com/remove-mypost
     
     > /RemoveMyPost provides user to Delete the selected post of them.
 
@@ -400,7 +399,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         res: true
 
 2. Remove All
-    **URL** - https://social-media-app-back.herokuapp.com/RemoveAll-MyPost/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/remove-all-mypost/:userId
 
     > /RemoveAll-MyPost provides the user to delete all their posts.
 
@@ -411,7 +410,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         Message : "All post Removed"
 
 3. Get friends Post
-    **URL** - https://social-media-app-back.herokuapp.com/GetFriendsPost/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/get-friends-post/:userId
 
     > /GetFriendsPost provides the user to get all their following's posts.
 
@@ -431,7 +430,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         }
 
 4. Add Post
-    **URL** - https://social-media-app-back.herokuapp.com/StoreMyPost
+    **URL** - https://social-media-app-back.herokuapp.com/store-mypost
 
     > /StoreMyPost provides the user to add new post.
 
@@ -443,10 +442,10 @@ Also write 1-2 lines explaining the function of the endpoint.
        
     - Expected Reponse
         Message : "Post Added Sucessfully",  
-           res:true
+           res:true 
 
 5. Get My Post
-    **URL** - https://social-media-app-back.herokuapp.com/MyPosts/:UserID
+    **URL** - https://social-media-app-back.herokuapp.com/myposts/:Id
 
     > /MyPosts provides user to get their posted photos
 
@@ -462,7 +461,7 @@ Also write 1-2 lines explaining the function of the endpoint.
         } 
 
 6. Update Post Details
-    **URL** - https://social-media-app-back.herokuapp.com/UpdateMyPostDetails
+    **URL** - https://social-media-app-back.herokuapp.com/update-mypost-Details
 
     > /UpdateMyPostDetails provides user to edit their posted photo's details
 
