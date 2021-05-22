@@ -34,6 +34,15 @@ Also write 1-2 lines explaining the function of the endpoint.
         4. Full Name,
         5. Phone Number.
 
+        ```{
+            "email" : "rahull@gmail.com",
+            "userName" : "rahull",
+            "fullName" : "rahull",
+            "password" : "rahull",
+            "confirmPassword" : "rahull",
+            "phone" : "8248774588"
+        }
+
     - Expected Response
         * status(200),
              ``` "User":  
@@ -66,6 +75,11 @@ Also write 1-2 lines explaining the function of the endpoint.
     - Expected Incoming Request Body,
         1. UserName
         2. Password
+
+        ```{
+            "email": "rahull@gmail.com",
+            "password": "rahull"
+        }
   
     - Expected Response,
         * status(200),
@@ -96,10 +110,10 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /ShowUser/:UserID provides the users to show their  Profile details which has been stored
 
     - Expected Incoming Request Body,
-        1. UserID
+        1. userId
      
     - Expected Response,
-        The Object containing that UserID.
+        The Object containing that userId.
         ```"User": {
                 "Bio": "",
                 "Website": "",
@@ -122,7 +136,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /RemoveUser/:UserID provides the user to Delete their account from the App.
 
     - Expected Incoming Request Body,
-        1. UserID
+        1. userId
    
     - Expected Response,
         Message : "User Deleted Successfully",  
@@ -133,9 +147,9 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /User/UpdateProfile provides the user to update their profile Details which has been stored during earlier.
 
     - Expected Incoming Request Body,
-        1. UserID 
+        1. userId 
 
-        They'll give the UserID, 
+        They'll give the userId, 
         remaining will be found out from their account.
         All are optional , if they want it they can update and store
         2. "Email",  
@@ -147,6 +161,18 @@ Also write 1-2 lines explaining the function of the endpoint.
         8. "Website",  
         9. "Gender,  
 
+        ```{
+            "userId" : "609a463ce9a5c899587d7e7d",
+            "email" : "rahulravisankarr@gmail.com",
+            "userName" : "RahulRavisankar",
+            "fullName" : "RahulRavisankar",
+            "password" : "RahulRavisankar",
+            "phone" : "8248774588",
+            "bio" : "Live the life!",
+            "website": "",
+            "gender": "Male"
+        }
+
     - Expected Response,
         ```Message : "User Deleted Successfully",  
            res:true,
@@ -155,7 +181,11 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /SearchUser provides the user 
    
     - Expected Request body,
-        1. UserName
+        1. userName
+
+        ```{
+            "UserName" : "rahul",
+        }
        
     - Expected Response,
        The record which contains userName as the request body.
@@ -165,8 +195,8 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /UpdateProfilePhoto provides the user to update their profile photo
 
     - Expected Request body,
-        1. UserID,
-        2. Image
+        1. userId,
+        2. image
        
     - Expected Response,
         ```message : Profile Photo Updated,
@@ -178,8 +208,13 @@ Also write 1-2 lines explaining the function of the endpoint.
     >  /Followers/RemoveUser provides the user to remove the other user who follow the current user
 
     - Expected Request
-        1. UserID,
-        2. FollowerID
+        1. userId,
+        2. followerId
+
+        ```{
+            "userId" : "609a4639e9a5c899587d7e7c",
+            "followerId" : "609a4632e9a5c899587d7e7b"
+        }
 
     - Expected Response
         Message : "Follower Removed"
@@ -189,7 +224,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /Followers/ShowAll-User/:UserID provides the user to get the other user details who already follow the curernt user
 
     - Expected Request (params)
-        1. UserID
+        1. userId
 
     - Expected Response
         Array of all followers who follow the current user.
@@ -199,7 +234,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /Followers/CountAll-User/:UserID provides the user to count their followers
 
     - Expected Request (params)
-        1. UserID
+        1. userId
 
     - Expected Response  
         FollowersCount
@@ -210,18 +245,28 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /Following/RemoveUser provides the user to delete the current user who already follow the other User
 
     - Expected Request
-        1. UserID,
+        1. userId,
         2. FollowingID
     - Expected Response  
         Message : "Removed the target User"
+
+        ```{
+            "UuerId" : "609a4632e9a5c899587d7e7b",
+            "followingId" : "609a4639e9a5c899587d7e7c"
+        }
 
 2. Accept
     
     > /Following/AddUser provides the user to accept the request given by other users
 
     - Expected Request
-        1. UserID
+        1. userId
         2. RequestedUserID
+
+        ```{
+            "userId" : "609a463ce9a5c899587d7e7d",
+            "requestedUserId" : "609a4632e9a5c899587d7e7b"
+        }
 
     - Expected Response  
         Message : "Accepted the Target User to follow"
@@ -243,7 +288,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /following/ShowAll-User/:UserID provides the user to get all the other users details whom the current user follows
 
     - Expected Request (params)
-        1. UserID
+        1. userId
 
     - Expected Response
         ```{
@@ -254,10 +299,10 @@ Also write 1-2 lines explaining the function of the endpoint.
                   "Gender": "",
                   "ProfilePicture": "",
                   "_id": "609a4639e9a5c899587d7e7c",
-                  "Email": "Lalitha@gmail.com",
-                  "UserName": "Lalitha",
-                  "FullName": "Lalitha",
-                  "Phone": "9787367249"
+                  "Email": "ABC@gmail.com",
+                  "UserName": "ABC",
+                  "FullName": "ABC",
+                  "Phone": "9857412633"
               },
             ]
         }
@@ -267,8 +312,8 @@ Also write 1-2 lines explaining the function of the endpoint.
     
     > /request/ShowAll-Users/:UserID provides the user to get all the request received from other users to the Current User
 
-    - Expected Request
-        1. UserID
+    - Expected Request (params)
+        1. userId
     - Expected Response
         ```"requestedUser": [
                 {
@@ -290,8 +335,13 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /request/RemoveUser provides the user to remove one request given by the other user
 
     - Expected Request
-        1. UserID
-        2. RequestID
+        1. userId
+        2. requestId
+
+        ```{
+            "userId" : "609a4632e9a5c899587d7e7b",
+            "requestId": "609a4639e9a5c899587d7e7c"
+        }
         
     - Expected Response
         Message : "User removed from request"
@@ -302,7 +352,12 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request
         1. targetID
-        2. UserID
+        2. userId
+
+        ```{
+            "targetId" : "609a463ce9a5c899587d7e7d",
+            "userId" : "609a4632e9a5c899587d7e7b"
+        }
         
     - Expected Response
         Message : "Requested"
@@ -312,7 +367,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /request/CountAll-Users/:UserID provides the user to count the number of request given by other users
 
     - Expected Request (params)
-        1. UserID
+        1. userId
      
     - Expected Response
         "RequestedCount"
@@ -322,7 +377,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > Request/ClearAll-Users/:UserID provides the user to clear all the request given by the other users
 
     - Expected Request (params)
-        1. UserID
+        1. userId
         
     - Expected Response
         message : "Removed all requests"
@@ -334,17 +389,22 @@ Also write 1-2 lines explaining the function of the endpoint.
 
     - Expected Request
         1. CurrentUserID
-        2. UserID of the given Request
+        2. userId of the given Request
+
+        ```{
+            "userId" : "609a463ce9a5c899587d7e7d",
+            "givenRequestUser" : "609a4639e9a5c899587d7e7c"
+        }
         
     - Expected Response
         Message : "Given request Removed"
 
 2. Get 
     
-    > /requested/ShowAll-Users/:UserID  provides the user to get the details of the UserID's which current User has given friend request.
+    > /requested/ShowAll-Users/:UserID  provides the user to get the details of the userId's which current User has given friend request.
 
     - Expected Request (params)
-        1. UserID
+        1. userId
         
     - Expected Response
         ```if Given Request in current User 
@@ -359,7 +419,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /GivenRequest/Count/:UserID provides the user to count the number of Request given by the currentUser
 
     - Expected Request (Params)
-        1. UserID
+        1. userId
 
     - Expected Response
         'GivenRequestCount'
@@ -370,8 +430,13 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /RemoveMyPost provides user to Delete the selected post of them.
 
     - Expected Request
-        1. UserID,
+        1. userId,
         2. PostID,
+
+        ```{
+            "userId": "609a4632e9a5c899587d7e7b",
+            "Id": "609b8a6d6bf5a094bcaaedba"
+        }
 
     - Expected Response,
         Message : "Post Deleted"
@@ -382,7 +447,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /RemoveAll-MyPost provides the user to delete all their posts.
 
     - Expected Request (Params)
-        1. UserID 
+        1. userId 
         
     - Expected Response
         Message : "All post Removed"
@@ -392,15 +457,15 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /GetFriendsPost provides the user to get all their following's posts.
 
     - Expected Request (Params)
-        1. UserID
+        1. userId
         
     - Expected Response 
         ```{
             "FriendPost": [
             {
-                "Image": "https://res.cloudinary.com/socialmediaa/image/upload/v1620825295/xfb7szj4s7uayjf7yhiv.jpg",
-                "Caption": "Good day",
-                "Location": "Coimbatore",
+                "image": "some url",
+                "caption": "Good day",
+                "location": "Coimbatore",
                 "_id": "609bd4ce82bea482d0970bb8",
                 "__v": 0
             }
@@ -411,10 +476,17 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /StoreMyPost provides the user to add new post.
 
     - Expected Request
-        1. UserID
+        1. userId
         2. Caption
         3. Location
         4. image
+
+        ```{
+            "userId" : "609a463ce9a5c899587d7e7d",
+            "caption" : "be free",
+            "location : "cbe",
+            "image" : "someUrl",
+        }
        
     - Expected Reponse
         Message : "Post Added Sucessfully",  
@@ -425,7 +497,7 @@ Also write 1-2 lines explaining the function of the endpoint.
     > /MyPosts provides user to get their posted photos
 
     - Expected Request (Params)
-        1. UserID
+        1. userId
         
     - Expected Response
         ```{
@@ -443,6 +515,12 @@ Also write 1-2 lines explaining the function of the endpoint.
         1. PostId
         2. Caption
         3. Location
+
+        ```{
+            "Id" : "609b8a6d6bf5a094bcaaedba",
+            "caption" : "Be free",
+            "location" : "Coimbatore",
+        }
         
     - Expected Response
        Message : "Post Details Updated",
